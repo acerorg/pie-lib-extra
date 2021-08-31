@@ -6,8 +6,11 @@
   "useWorkspaces": true,
   "command": {
     "publish": {
+      "conventionalCommits": true,
       "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md"],
-      "message": "[ci skip] chore: publish"
+      "message": "[ci skip] chore: publish",
+      "registry": "https://npm.pkg.github.com",
+      "allowBranch": "main"
     }
   }
 }
