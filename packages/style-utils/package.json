@@ -1,0 +1,14 @@
+{
+  "name": "@tflib/style-utils",
+  "version": "0.1.25",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8"
+}

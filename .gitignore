@@ -1,0 +1,12 @@
+node_modules
+lib
+lerna-debug.log
+.vscode
+.idea
+.DS_Store
+package-lock.json
+.npmrc
+NEXT.CHANGELOG.md
+*.CHANGELOG.json
+PIE-*
+

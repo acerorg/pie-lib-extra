@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+const minimist = require('minimist');
+
+const args = minimist(process.argv.slice(2));
+const { execSync } = require('child_process');
+const { deployToNow } = require('@pie-framework/build-helper');
+const { resolve } = require('path');
+
+const bin = n => resolve(__dirname, '..', 'node_modules', '.bin', n);
+
+const nextPath = bin('next');
+const demoDir = resolve(__dirname, '..', 'packages/demo');
+
+execSync(`${nextPath} build`, { cwd: demoDir, stdio: 'inherit' });
+execSync(`${nextPath} export`, { cwd: demoDir, stdio: 'inherit' });
+
+const token = process.env.NOW_TOKEN;
+const alias = args._[0];
+const nowPath = bin('now');
+deployToNow(resolve(demoDir, 'out'), token, alias, nowPath);

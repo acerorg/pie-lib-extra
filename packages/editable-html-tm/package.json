@@ -1,0 +1,32 @@
+{
+  "name": "@tflib/editable-html-tm",
+  "version": "7.17.2",
+  "description": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "module": "src/index.jsx",
+  "author": "pie-framework developers",
+  "dependencies": {
+    "@material-ui/core": "^3.8.3",
+    "@material-ui/icons": "^3.0.2",
+    "@material-ui/styles": "^3.0.0-alpha.10",
+    "@tinymce/tinymce-react": "^3.12.6",
+    "classnames": "^2.2.6",
+    "debug": "^4.1.1",
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.6.2"
+  },
+  "devDependencies": {
+    "@pie-framework/mathquill": "^1.1.2",
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
+  "scripts": {}
+}

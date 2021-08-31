@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e 
+
+rm -fr packages/demo/out
+
+export NODE_ENV="production"
+export ASSET_PREFIX="/pie-lib"
+
+./node_modules/.bin/next build packages/demo 
+./node_modules/.bin/next export packages/demo
+
+cd packages/demo/out
+touch .nojekyll
+git init
+git add .
+git commit . -m "static build"
+git remote add origin git@github.com:pie-framework/pie-lib.git
+git push --force origin master:gh-pages
+rm -fr .git
+

@@ -1,0 +1,6 @@
+**/node_modules
+**/__test__
+__tests__
+**/test
+**/__mocks__
+**/webpack.config.js

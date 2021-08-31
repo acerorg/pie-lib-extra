@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+const _ = require('lodash');
+const minimist = require('minimist');
+const { Commands } = require('@pie-framework/build-helper');
+const args = minimist(process.argv.slice(2));
+const { resolve } = require('path');
+
+class LibCommands extends Commands {
+  async deploy() {
+    const demoDir = resolve(this.projectRoot, 'packages', 'demo');
+    const next = this.bin('next');
+    await this.runCmds([`${next} build`, `${next} export`], { cwd: demoDir });
+
+    const alias = `pie-lib${args.next ? '-next' : ''}`;
+    return this.staticToNow(resolve(demoDir, 'out'), alias);
+  }
+
+  sharedBuild() {
+    if (args.next) {
+      return Promise.resolve();
+    } else {
+      return this.runCmd(
+        `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
+      );
+    }
+  }
+
+  build() {
+    return super.build().then(() => this.sharedBuild());
+  }
+}
+
+const cmds = new LibCommands(resolve(__dirname, '..'), args);
+
+cmds
+  .execute()
+  .then(() => {
+    console.log('all done');
+    process.exit(0);
+  })
+  .catch(e => {
+    console.error(e);
+    process.exit(1);
+  });

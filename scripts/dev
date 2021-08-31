@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+const argv = require('minimist')(process.argv.slice(2));
+const debug = require('debug');
+const fs = require('fs-extra');
+const { spawn } = require('child_process');
+const { processFix, watch } = require('@pie-framework/build-helper');
+const log = debug('@pie-lib:scripts:dev');
+
+//
+
+let watcher = null;
+let nextProcess = null;
+processFix(log, () => {
+  if (watcher) {
+    watcher.exit();
+  }
+
+  if (nextProcess) {
+    nextProcess.kill();
+  }
+
+  process.exit();
+});
+
+const scope = argv.scope
+  ? Array.isArray(argv.scope)
+    ? argv.scope
+    : [argv.scope]
+  : fs
+      .readdirSync('packages')
+      .filter(n => !n.startsWith('.') && !n.startsWith('demo'));
+
+
+const run = async () => {
+
+  log('scope: ', scope);
+
+  const args = scope.map(s => ({
+    src: `packages/${s}/src`,
+    target: `packages/${s}/lib`
+  }));
+
+  watcher = watch(args);
+
+  const nextCmd = './node_modules/.bin/next';
+
+  nextProcess = spawn(nextCmd, ['packages/demo'], {
+    stdio: 'inherit',
+    env: Object.assign({}, process.env, { NODE_ENV: 'development' })
+  });
+};
+
+run()
+  .then(() => {
+    log('running');
+  })
+  .catch(e => {
+    //eslint-disable-next-line
+    console.error(e);
+    throw e;
+  });

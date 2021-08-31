@@ -1,0 +1,13 @@
+{
+  "lerna": "3.11.0",
+  "packages": ["packages/*"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md"],
+      "message": "[ci skip] chore: publish"
+    }
+  }
+}
