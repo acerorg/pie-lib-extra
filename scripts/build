@@ -19,15 +19,14 @@ class LibCommands extends Commands {
   async release() {
     const { GITHUB_TOKEN } = process.env;
 
+    const ciVars = {
+      branch: 'main',
+      username: 'tf-ops-item',
+      email: 'ops+item-author@teachforward.com',
+      repo: 'TeachForward/pie-lib-extra'
+    };
 
     if (GITHUB_TOKEN) {
-
-      const ciVars = {
-        branch: 'main',
-        username: 'tf-ops-item',
-        email: 'ops+item-author@teachforward.com',
-        repo: 'TeachForward/pie-lib-extra'
-      };
 
       log(
         '-----> running in GithubWorkflows - checkout the branch (detached head doesnt work with lerna)'
