@@ -1,32 +1,72 @@
 #!/usr/bin/env node
 const _ = require('lodash');
+const debug = require('debug');
+const log = debug('pie-element:scripts:build');
 const minimist = require('minimist');
 const { Commands } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
 const { resolve } = require('path');
 
 class LibCommands extends Commands {
-  async deploy() {
-    const demoDir = resolve(this.projectRoot, 'packages', 'demo');
-    const next = this.bin('next');
-    await this.runCmds([`${next} build`, `${next} export`], { cwd: demoDir });
 
-    const alias = `pie-lib${args.next ? '-next' : ''}`;
-    return this.staticToNow(resolve(demoDir, 'out'), alias);
+  async build() {
+    await this.clean();
+    await this.lint();
+    await this.babel();
+    // await this.test();
   }
 
-  sharedBuild() {
-    if (args.next) {
-      return Promise.resolve();
-    } else {
-      return this.runCmd(
-        `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
+  async release() {
+    const { GITHUB_TOKEN } = process.env;
+
+    // at some point this should go to ENV
+    const ciVars = {
+      branch: 'main',
+      username: 'tf-ops-item',
+      email: 'ops+item-author@teachforward.com',
+      repo: 'TeachForward/pie-elements-private'
+    };
+
+    if (ciVars && false) {
+      console.error('GITHUB_TOKEN env var must be defined');
+
+      log(
+        '-----> running in GithubWorkflows - checkout the branch (detached head doesnt work with lerna)'
       );
-    }
-  }
+      if (GITHUB_TOKEN) {
+        await this.runCmds([
+          `git remote set-url origin https://${GITHUB_TOKEN}@github.com/${ciVars.repo}.git`,
+          `git checkout ${ciVars.branch}`,
+          'git rev-parse --short HEAD',
+          `git config user.name "${ciVars.username}"`,
+          `git config user.email "${ciVars.email}"`,
+        ]);
+      }
 
-  build() {
-    return super.build().then(() => this.sharedBuild());
+      await this.runCmds([`git status`]);
+    }
+
+    await this.build();
+
+    if (!this.args.skipPublishHooks) {
+      await this.beforePublish();
+      log('beforePublish - done...');
+    }
+
+    const releaseCmd = `${
+      this.p.lerna
+    } publish from-package --conventional-commits --no-verify-access ${
+      this.args.lernaLogLevel ? `--loglevel ${this.args.lernaLogLevel}` : ''
+    } ${this.args.interactive ? '' : '--yes'}`;
+
+    await this.runCmds([releaseCmd]);
+
+    if (!this.args.skipPublishHooks) {
+      await this.afterPublish();
+    }
+    const branchToPush = ciVars ? ciVars.branch : getCurrentBranch();
+    // push to the branch
+    await this.runCmd(`git push origin ${branchToPush}`);
   }
 }
 

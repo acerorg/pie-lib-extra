@@ -15,7 +15,7 @@
     "dev": "./scripts/dev",
     "lint": "scripts/build lint",
     "clean": "scripts/build clean",
-    "release": "scripts/build release deploy",
+    "release": "scripts/build release",
     "release:next": "scripts/build release deploy --next",
     "build": "scripts/build build",
     "postinstall": "lerna bootstrap",
