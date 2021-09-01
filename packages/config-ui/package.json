@@ -1,5 +1,5 @@
 {
-  "name": "@tflib/config-ui",
+  "name": "@teachforward/config-ui",
   "version": "10.10.2",
   "main": "lib/index.js",
   "module": "src/index.js",
