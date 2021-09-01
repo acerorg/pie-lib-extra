@@ -34,6 +34,5 @@ jobs:
       - name: NPM Install, Run LINT, TESTS and BUILD
         run: |
           export NODE_OPTIONS="--max-old-space-size=8192"
-          npm install -g yarn
           yarn install
           yarn lint
