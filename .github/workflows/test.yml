@@ -37,4 +37,3 @@ jobs:
           npm install -g yarn
           yarn install
           yarn lint
-          yarn build
