@@ -4,7 +4,8 @@
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {},
   "dependencies": {
@@ -25,6 +26,5 @@
   },
   "peerDependencies": {
     "react": "^16.8.1"
-  },
-  "gitHead": "9099ff04666e7ae00b4f4f46c93f2e0e45349295"
+  }
 }

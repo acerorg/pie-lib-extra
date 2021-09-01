@@ -5,7 +5,11 @@
   "license": "ISC",
   "main": "lib/index.js",
   "module": "src/index.jsx",
-  "author": "pie-framework developers",
+  "author": "TF developers",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
+  },
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
@@ -24,9 +28,5 @@
   "peerDependencies": {
     "react": "^16.8.1"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "gitHead": "9099ff04666e7ae00b4f4f46c93f2e0e45349295",
   "scripts": {}
 }
