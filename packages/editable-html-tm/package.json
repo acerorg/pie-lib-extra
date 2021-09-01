@@ -6,9 +6,13 @@
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "author": "TF developers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeachForward/pie-lib-extra"
+  },
   "publishConfig": {
     "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/teachforward"
   },
   "dependencies": {
     "@material-ui/core": "^3.8.3",

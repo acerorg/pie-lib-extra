@@ -3,9 +3,13 @@
   "version": "10.10.2",
   "main": "lib/index.js",
   "module": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeachForward/pie-lib-extra"
+  },
   "publishConfig": {
     "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/teachforward"
   },
   "scripts": {},
   "dependencies": {
