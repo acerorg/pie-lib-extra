@@ -3233,18 +3233,6 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@teachforward/editable-html-tm@^7.17.2":
-  version "1.0.0"
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@material-ui/icons" "^3.0.2"
-    "@material-ui/styles" "^3.0.0-alpha.10"
-    "@tinymce/tinymce-react" "^3.12.6"
-    classnames "^2.2.6"
-    debug "^4.1.1"
-    immutable "^4.0.0-rc.12"
-    prop-types "^15.6.2"
-
 "@tinymce/tinymce-react@^3.12.6":
   version "3.12.6"
   resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-3.12.6.tgz#8a4e2a5c5026b7a0c9c4c839af4d691804aa0604"
