@@ -3044,7 +3044,7 @@
     lodash "^4.17.11"
     react-portal "^4.2.0"
 
-"@pie-lib/math-rendering@^2.3.9":
+"@pie-lib/math-rendering@^2.3.8", "@pie-lib/math-rendering@^2.3.9":
   version "2.3.9"
   resolved "https://registry.yarnpkg.com/@pie-lib/math-rendering/-/math-rendering-2.3.9.tgz#2e6cb89d22d889ed5d57586831e92e71aa92d87f"
   integrity sha512-acoQJ46dVx+yrH2h6J1V9U3t7ksfXaULY/kSExeFaUQHwkJuyYZbtaVu3zh5g3KVvuMCnkW0skef/FRJeWePag==
@@ -3053,7 +3053,7 @@
     lodash "^4.17.11"
     mathjax-full "^3.1.2"
 
-"@pie-lib/math-toolbar@^1.8.0":
+"@pie-lib/math-toolbar@^1.7.14", "@pie-lib/math-toolbar@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@pie-lib/math-toolbar/-/math-toolbar-1.8.0.tgz#8b58d69920040881330397bf4a614a02bc37895e"
   integrity sha512-d0CI6Yj3JQ6fDz3LoIfMPLkGUKa1zeWrYs93ucookvlh9Ldwl5xiH0wWoLGEsgiN9P4sZdwu7E3H23AzqjRXnA==
