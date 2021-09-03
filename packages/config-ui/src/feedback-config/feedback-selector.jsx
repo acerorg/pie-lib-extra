@@ -1,4 +1,4 @@
-import EditableHTML from '@pie-lib/editable-html';
+import EditableHTML from '@teachforward/editable-html';
 import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
