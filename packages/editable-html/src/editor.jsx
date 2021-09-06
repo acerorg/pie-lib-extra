@@ -1,6 +1,6 @@
 import { Editor as SlateEditor, findNode } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
-
+import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import * as serialization from './serialization';
 import PropTypes from 'prop-types';
@@ -51,6 +51,7 @@ export class Editor extends React.Component {
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
     nonEmpty: PropTypes.bool,
+    updateContentOnChange: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
     pluginProps: PropTypes.any,
@@ -399,6 +400,11 @@ export class Editor extends React.Component {
 
       if (done) {
         done();
+      }
+      if (this.props.updateContentOnChange) {
+        setTimeout(() => {
+          this.props.onChange(this.state.value);
+        }, 100);
       }
     });
   };
