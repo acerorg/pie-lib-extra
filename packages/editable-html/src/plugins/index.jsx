@@ -2,6 +2,7 @@ import Bold from '@material-ui/icons/FormatBold';
 // import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
+import InsertImages from 'slate-drop-or-paste-images'
 import ImagePlugin from './image';
 import MediaPlugin from './media';
 import Italic from '@material-ui/icons/FormatItalic';
@@ -107,6 +108,17 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin(),
-    addIf('responseArea', respAreaPlugin)
+    addIf('responseArea', respAreaPlugin),
+    // add insert image via copy and paste
+    InsertImages({
+      extensions: ['png', 'jpg', 'jpeg'],
+      insertImage: (change, file) => {
+        return change.insertBlock({
+          type: 'image',
+          isVoid: true,
+          data: { file }
+        })
+      }
+    })
   ]);
 };
