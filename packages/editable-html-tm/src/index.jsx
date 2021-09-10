@@ -89,7 +89,7 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
             'fullscreen  preview save print',
             'insertfile image media pageembed template link anchor codesample',
             'a11ycheck ltr rtl',
-            'showcomments addcomment',
+            'showcomments addcomment code',
           ].join(' | '),
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         }}
