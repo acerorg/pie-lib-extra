@@ -120,6 +120,7 @@ export class ChoiceConfiguration extends React.Component {
     }),
     allowFeedBack: PropTypes.bool,
     allowDelete: PropTypes.bool,
+    inputToggleDisabled: PropTypes.bool,
     toolbarOpts: PropTypes.object
   };
 
@@ -128,7 +129,8 @@ export class ChoiceConfiguration extends React.Component {
     noLabels: false,
     useLetterOrdering: false,
     allowFeedBack: true,
-    allowDelete: true
+    allowDelete: true,
+    inputToggleDisabled: false
   };
 
   _changeFn = key => update => {
@@ -187,7 +189,8 @@ export class ChoiceConfiguration extends React.Component {
       nonEmpty,
       allowFeedBack,
       allowDelete,
-      toolbarOpts
+      toolbarOpts,
+      inputToggleDisabled
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -200,12 +203,14 @@ export class ChoiceConfiguration extends React.Component {
               {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
             </span>
           )}
-          <InputToggle
-            className={classes.toggle}
-            onChange={this.onCheckedChange}
-            label={!noLabels ? 'Correct' : ''}
-            checked={!!data.correct}
-          />
+          {!inputToggleDisabled && (
+            <InputToggle
+              className={classes.toggle}
+              onChange={this.onCheckedChange}
+              label={!noLabels ? 'Correct' : ''}
+              checked={!!data.correct}
+            />
+          )}
           <div className={classes.middleColumn}>
             <EditableHtmlContainer
               label={!noLabels ? 'Label' : ''}
