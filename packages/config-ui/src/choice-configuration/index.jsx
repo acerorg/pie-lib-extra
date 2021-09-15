@@ -11,6 +11,7 @@ import FeedbackMenu from './feedback-menu';
 import ActionDelete from '@material-ui/icons/Delete';
 import ArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 import IconButton from '@material-ui/core/IconButton';
+import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
 
 const EditableHtmlContainer = withStyles(theme => ({
   labelContainer: {},
@@ -33,7 +34,7 @@ const EditableHtmlContainer = withStyles(theme => ({
 
     return (
       <InputContainer label={label} className={names}>
-        <div className={classes.editorHolder}>
+        <div>
           <EditableHtml
             markup={value || ''}
             disabled={disabled}
@@ -120,6 +121,7 @@ export class ChoiceConfiguration extends React.Component {
     }),
     allowFeedBack: PropTypes.bool,
     allowDelete: PropTypes.bool,
+    allowReorder: PropTypes.bool,
     inputToggleDisabled: PropTypes.bool,
     toolbarOpts: PropTypes.object
   };
@@ -130,6 +132,7 @@ export class ChoiceConfiguration extends React.Component {
     useLetterOrdering: false,
     allowFeedBack: true,
     allowDelete: true,
+    allowReorder: true,
     inputToggleDisabled: false
   };
 
@@ -188,6 +191,7 @@ export class ChoiceConfiguration extends React.Component {
       disabled,
       nonEmpty,
       allowFeedBack,
+      allowReorder,
       allowDelete,
       toolbarOpts,
       inputToggleDisabled
@@ -243,9 +247,16 @@ export class ChoiceConfiguration extends React.Component {
               />
             </InputContainer>
           )}
+          {allowReorder && (
+            <InputContainer className={classes.iconContainer} label={!noLabels ? 'Reorder' : ''}>
+              <IconButton aria-label="reorder" className={classes.styledIcon}>
+                <DragIndicatorIcon />
+              </IconButton>
+            </InputContainer>
+          )}
           {allowDelete && (
-            <InputContainer className={classes.delete} label={!noLabels ? 'Delete' : ''}>
-              <IconButton aria-label="delete" className={classes.deleteIcon} onClick={onDelete}>
+            <InputContainer className={classes.iconContainer} label={!noLabels ? 'Delete' : ''}>
+              <IconButton aria-label="delete" className={classes.styledIcon} onClick={onDelete}>
                 <ActionDelete />
               </IconButton>
             </InputContainer>
@@ -258,18 +269,19 @@ export class ChoiceConfiguration extends React.Component {
 
 const styles = theme => ({
   index: {
-    padding: '24px 10px 0 0'
+    padding: '10px 16px 0 0',
+    fontSize: 16,
+    fontWeight: 400,
+    color: 'rgba(0, 0, 0, 0.87)'
   },
   choiceConfiguration: {},
   topRow: {
-    display: 'flex'
+    display: 'flex',
+    alignItems: 'center'
   },
   value: {
     flex: '0.5',
     paddingRight: theme.spacing.unit
-  },
-  editorHolder: {
-    marginTop: theme.spacing.unit * 2
   },
   toggle: {
     flex: '0 1 auto'
@@ -286,15 +298,15 @@ const styles = theme => ({
     paddingLeft: 0,
     width: 'inherit'
   },
-  deleteIcon: {
+  styledIcon: {
     margin: 0,
     width: 'inherit'
   },
-  delete: {
+  iconContainer: {
     flex: '0 1 auto',
     paddingTop: theme.spacing.unit,
     paddingLeft: 0,
-    marginLeft: 0
+    margin: 0
   },
   middleColumn: {
     display: 'flex',

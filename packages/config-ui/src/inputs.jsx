@@ -61,7 +61,7 @@ const RawInputRadio = props => {
   return (
     <InputContainer className={className} label={label}>
       <Radio
-        className={classes.radioRoot}
+        className={`${classes.radioRoot} ${checked ? classes.radiochecked : ''}`}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
@@ -81,7 +81,10 @@ const InputCheckbox = withStyles({
 
 const InputRadio = withStyles(() => ({
   radioRoot: {
-    transform: 'translate(-20%, 20%)'
+    transform: 'translate(-20%, 20%)',
+  },
+  radiochecked: {
+    color: '#3E73B0 !important'
   }
 }))(RawInputRadio);
 
