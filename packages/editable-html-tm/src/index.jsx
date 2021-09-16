@@ -47,7 +47,7 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
       <Editor
         className={classes.editContainer}
         apiKey="jia0ekj0smryac6bkoratszcr5zks933f60faprd3b30work"
-        onInit={(evt, editor) => editorRef.current = editor}
+        onInit={(evt, editor) => (editorRef.current = editor)}
         value={markup}
         onEditorChange={inputChange}
         init={{
@@ -55,6 +55,9 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
           width,
           menubar: '',
           inline: true,
+          paste_data_images: true,
+          automatic_uploads: false,
+          quickbars_selection_toolbar: 'bold italic backcolor| formatselect | quicklink blockquote',
           plugins: [
             'advlist',
             'anchor',
@@ -74,7 +77,7 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
             'searchreplace',
             'table',
             'visualblocks',
-            'wordcount',
+            'wordcount'
           ],
           toolbar: [
             'bold italic underline strikethrough',
@@ -89,9 +92,9 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
             'fullscreen  preview save print',
             'insertfile image media pageembed template link anchor codesample',
             'a11ycheck ltr rtl',
-            'showcomments addcomment code',
+            'showcomments addcomment code'
           ].join(' | '),
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
     </div>
