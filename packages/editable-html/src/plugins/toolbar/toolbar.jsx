@@ -270,12 +270,11 @@ const style = {
     zIndex: 10,
     cursor: 'pointer',
     justifyContent: 'space-between',
-    background: 'var(--editable-html-toolbar-bg, #efefef)',
+    background: 'var(--editable-html-toolbar-bg, #fff)',
     minWidth: '280px',
     margin: '5px 0 0 0',
-    padding: '2px',
-    boxShadow:
-      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+    padding: '2px 5px',
+    border: '1px solid var(--editable-html-toolbar-border-bg, #ccc)',
     boxSizing: 'border-box',
     display: 'none'
   },
@@ -304,7 +303,7 @@ const style = {
     verticalAlign: 'top'
   },
   label: {
-    color: 'var(--editable-html-toolbar-check, #00bb00)'
+    color: 'var(--editable-html-toolbar-check, #222f3e)'
   },
   shared: {
     display: 'flex'

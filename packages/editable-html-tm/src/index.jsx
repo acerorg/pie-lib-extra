@@ -14,11 +14,18 @@ export const parseDegrees = html =>
 
 const useStyles = withStyles(theme => ({
   editorWrapper: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2 + 5,
+    marginLeft: '0px',
+    marginRight: '5px',
+    border: '1px solid #e0e0e0',
+    borderRadius: '5px',
+    padding: '0px',
+    display: 'flex',
+    flexDirection: 'column',
     '& .mce-content-body': {
-      border: '1px solid #e0e0e0',
-      borderRadius: '5px',
-      padding: '5px'
+      padding: '5px',
+      clear: 'both',
+      float: 'none'
     }
   },
   removeContainer: {

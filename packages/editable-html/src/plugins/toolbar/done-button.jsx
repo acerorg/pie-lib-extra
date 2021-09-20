@@ -29,8 +29,9 @@ const styles = {
     verticalAlign: 'top',
     width: '28px',
     height: '28px',
-    color: 'var(--editable-html-toolbar-check, #00bb00)',
-    padding: '4px'
+    color: 'var(--editable-html-toolbar-check, #222f3e)',
+    padding: '4px',
+    marginLeft: '10px'
   }
 };
 export const DoneButton = withStyles(styles)(RawDoneButton);
