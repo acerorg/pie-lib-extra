@@ -64,7 +64,6 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
           inline: true,
           paste_data_images: true,
           automatic_uploads: false,
-          quickbars_selection_toolbar: 'bold italic backcolor| formatselect | quicklink blockquote',
           plugins: [
             'advlist',
             'anchor',
@@ -86,21 +85,19 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
             'visualblocks',
             'wordcount'
           ],
+          toolbar_mode: 'sliding',
           toolbar: [
-            'bold italic underline strikethrough',
+            'bold italic underline alignleft aligncenter alignright alignjustify table code',
             'fontselect fontsizeselect formatselect',
-            'alignleft aligncenter alignright alignjustify',
-            'table',
-            'outdent indent',
-            'numlist bullist checklist',
+            'outdent indent numlist bullist checklist',
             'forecolor backcolor casechange permanentpen formatpainter removeformat',
             'pagebreak',
             'charmap emoticons',
-            'fullscreen  preview save print',
+            'fullscreen save print',
             'insertfile image media pageembed template link anchor codesample',
             'a11ycheck ltr rtl',
-            'showcomments addcomment code'
-          ].join(' | '),
+            'showcomments addcomment searchreplace',
+          ].join(' | ' ),
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
