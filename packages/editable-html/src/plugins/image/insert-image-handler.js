@@ -18,13 +18,16 @@ class InsertImageHandler {
 
   getPlaceholderInDocument(value) {
     const { document } = value;
-    const directChild = document.getChild(this.placeholderBlock.key);
+    const originalKey = this.placeholderBlock.data.originalKey;
+    const directChild =
+      document.getChild(this.placeholderBlock.key) || document.getChild(originalKey);
 
     if (directChild) {
       return directChild;
     }
 
-    const child = document.getDescendant(this.placeholderBlock.key);
+    const child =
+      document.getDescendant(this.placeholderBlock.key) || document.getDescendant(originalKey);
 
     if (child) {
       return child;
