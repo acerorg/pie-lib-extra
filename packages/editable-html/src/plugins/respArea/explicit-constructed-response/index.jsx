@@ -18,7 +18,7 @@ const ExplicitConstructedResponse = props => {
         <span style={{
             width: '30px',
             height: '30px',
-            background: '#C4C4C4',
+            background: '#DDDDDD',
             borderRadius: '50%',
             position: 'absolute',
             left: '-5px',
@@ -55,8 +55,7 @@ const ExplicitConstructedResponse = props => {
 
 ExplicitConstructedResponse.propTypes = {
   attributes: PropTypes.object,
-  value: PropTypes.object,
-  index: PropTypes.number
+  value: PropTypes.string
 };
 
 export default ExplicitConstructedResponse;
