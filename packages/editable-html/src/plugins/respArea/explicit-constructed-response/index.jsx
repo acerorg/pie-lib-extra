@@ -21,7 +21,6 @@ const ExplicitConstructedResponse = props => {
             background: '#DDDDDD',
             borderRadius: '50%',
             position: 'absolute',
-            left: '-5px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -43,7 +42,7 @@ const ExplicitConstructedResponse = props => {
           borderRadius: '15px',
           overflow: 'hidden',
           padding: '5px',
-          paddingLeft: '25px'
+          paddingLeft: '30px'
         }}
         dangerouslySetInnerHTML={{
           __html: value || '<div>&nbsp;</div>'
