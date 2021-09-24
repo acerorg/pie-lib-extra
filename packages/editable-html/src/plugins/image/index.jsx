@@ -22,7 +22,7 @@ export default function ImagePlugin(opts) {
           src: undefined
         }
       });
-
+      inline.data.originalKey = inline.key;
       const change = value.change().insertInline(inline);
       onChange(change);
       opts.insertImageRequested(getValue => new InsertImageHandler(inline, getValue, onChange));
@@ -173,7 +173,7 @@ export const serialization = {
     const props = {
       src,
       style
-    };
+    }
 
     return <img {...props} />;
   }

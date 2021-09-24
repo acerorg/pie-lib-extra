@@ -1,6 +1,6 @@
 import { Editor as SlateEditor, findNode } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
-import debounce from 'lodash/debounce';
+
 import isEqual from 'lodash/isEqual';
 import * as serialization from './serialization';
 import PropTypes from 'prop-types';
@@ -304,6 +304,29 @@ export class Editor extends React.Component {
     });
   };
 
+  handleDomBlur = e => {
+    const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
+
+    setTimeout(() => {
+      if (!this.wrapperRef) {
+        return;
+      }
+
+      const editorElement =
+        !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
+      const toolbarElement =
+        !this.toolbarRef ||
+        document.activeElement.closest(`[class*="${this.toolbarRef.className}"]`);
+      const isInCurrentComponent =
+        this.wrapperRef.contains(editorElement) || this.wrapperRef.contains(toolbarElement);
+
+      if (!isInCurrentComponent) {
+        editorDOM.removeEventListener('blur', this.handleDomBlur);
+        this.onBlur(e);
+      }
+    }, 50);
+  };
+
   /*
    * Needs to be wrapped otherwise it causes issues because of race conditions
    * Known issue for slatejs. See: https://github.com/ianstormtaylor/slate/issues/2097
@@ -340,12 +363,8 @@ export class Editor extends React.Component {
        * is focused.
        */
       if (editorDOM === document.activeElement) {
-        const handleDomBlur = e => {
-          editorDOM.removeEventListener('blur', handleDomBlur);
-          this.onBlur(e);
-        };
-
-        editorDOM.addEventListener('blur', handleDomBlur);
+        editorDOM.removeEventListener('blur', this.handleDomBlur);
+        editorDOM.addEventListener('blur', this.handleDomBlur);
       }
 
       this.stashValue();
@@ -475,9 +494,10 @@ export class Editor extends React.Component {
      * HACK ALERT: We should be calling setState here and storing the change data:
      *
      * <code>this.setState({changeData: { key, data}})</code>
-     * However this is causing issues with the Mathquill instance. The 'input' event stops firing on the element and no more changes get through.
-     * The issues seem to be related to the promises in onBlur/onFocus. But removing these brings it's own problems.
-     * A major clean up is planned for this component so I've decided to temporarily settle on this hack rather than spend more time on this.
+     * However this is causing issues with the Mathquill instance. The 'input' event stops firing on the element and no
+     * more changes get through. The issues seem to be related to the promises in onBlur/onFocus. But removing these
+     * brings it's own problems. A major clean up is planned for this component so I've decided to temporarily settle
+     * on this hack rather than spend more time on this.
      */
 
     // Uncomment this line to see the bug described above.
@@ -528,6 +548,11 @@ export class Editor extends React.Component {
             }
           }}
           ref={r => (this.editor = r && this.props.editorRef(r))}
+          toolbarRef={r => {
+            if (r) {
+              this.toolbarRef = r;
+            }
+          }}
           value={value}
           focus={this.focus}
           onKeyDown={onKeyDown}

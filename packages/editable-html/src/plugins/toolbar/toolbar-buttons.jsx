@@ -6,15 +6,16 @@ import PropTypes from 'prop-types';
 
 const styles = () => ({
   button: {
-    color: 'grey',
+    color: '#222f3e',
     display: 'inline-flex',
     padding: '2px',
+    borderRadius: '3px',
     '& :hover': {
-      color: 'black'
+      color: 'gray'
     }
   },
   active: {
-    color: 'black'
+    color: 'gray'
   }
 });
 

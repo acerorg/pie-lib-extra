@@ -14,15 +14,19 @@ export const parseDegrees = html =>
 
 const useStyles = withStyles(theme => ({
   editorWrapper: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2 + 5,
+    marginLeft: '0px',
+    marginRight: '5px',
+    border: '1px solid #e0e0e0',
+    borderRadius: '5px',
+    padding: '0px',
+    display: 'flex',
+    flexDirection: 'column',
     '& .mce-content-body': {
-      border: '1px solid #e0e0e0',
-      borderRadius: '5px',
-      padding: '5px'
+      padding: '5px',
+      clear: 'both',
+      float: 'none'
     }
-  },
-  removeContainer: {
-    cursor: 'pointer'
   }
 }));
 
@@ -47,14 +51,18 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
       <Editor
         className={classes.editContainer}
         apiKey="jia0ekj0smryac6bkoratszcr5zks933f60faprd3b30work"
-        onInit={(evt, editor) => editorRef.current = editor}
+        onInit={(evt, editor) => (editorRef.current = editor)}
         value={markup}
         onEditorChange={inputChange}
+        scriptLoading={{ async: true }}
         init={{
           height,
           width,
           menubar: '',
           inline: true,
+          paste_data_images: true,
+          object_resizing: true,
+          automatic_uploads: false,
           plugins: [
             'advlist',
             'anchor',
@@ -63,7 +71,7 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
             'code',
             'fullscreen',
             'help',
-            'image',
+            'image imagetools',
             'insertdatetime',
             'link',
             'lists',
@@ -74,24 +82,17 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
             'searchreplace',
             'table',
             'visualblocks',
-            'wordcount',
+            'wordcount'
           ],
+          toolbar_mode: 'sliding',
           toolbar: [
-            'bold italic underline strikethrough',
-            'fontselect fontsizeselect formatselect',
-            'alignleft aligncenter alignright alignjustify',
-            'table',
-            'outdent indent',
-            'numlist bullist checklist',
+            'bold italic underline | alignleft aligncenter alignright alignjustify outdent indent | table | code',
+            'formatselect | numlist bullist checklist',
             'forecolor backcolor casechange permanentpen formatpainter removeformat',
-            'pagebreak',
             'charmap emoticons',
-            'fullscreen  preview save print',
-            'insertfile image media pageembed template link anchor codesample',
-            'a11ycheck ltr rtl',
-            'showcomments addcomment',
-          ].join(' | '),
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            'insertfile image media pageembed template link anchor showcomments addcomment searchreplace',
+          ].join(' | ' ),
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
     </div>
@@ -109,7 +110,7 @@ EditorHtml.propTypes = {
 };
 EditorHtml.defaultProps = {
   height: 120,
-  width: 400,
+  width: 450,
   onDone: () => {}
 };
 
