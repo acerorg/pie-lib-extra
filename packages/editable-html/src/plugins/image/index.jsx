@@ -173,7 +173,7 @@ export const serialization = {
     const props = {
       src,
       style
-    };
+    }
 
     return <img {...props} />;
   }

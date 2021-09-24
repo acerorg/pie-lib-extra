@@ -27,9 +27,6 @@ const useStyles = withStyles(theme => ({
       clear: 'both',
       float: 'none'
     }
-  },
-  removeContainer: {
-    cursor: 'pointer'
   }
 }));
 
@@ -57,12 +54,14 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
         onInit={(evt, editor) => (editorRef.current = editor)}
         value={markup}
         onEditorChange={inputChange}
+        scriptLoading={{ async: true }}
         init={{
           height,
           width,
           menubar: '',
           inline: true,
           paste_data_images: true,
+          object_resizing: true,
           automatic_uploads: false,
           plugins: [
             'advlist',
@@ -72,7 +71,7 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
             'code',
             'fullscreen',
             'help',
-            'image',
+            'image imagetools',
             'insertdatetime',
             'link',
             'lists',
@@ -87,16 +86,11 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
           ],
           toolbar_mode: 'sliding',
           toolbar: [
-            'bold italic underline alignleft aligncenter alignright alignjustify table code',
-            'fontselect fontsizeselect formatselect',
-            'outdent indent numlist bullist checklist',
+            'bold italic underline | alignleft aligncenter alignright alignjustify outdent indent | table | code',
+            'formatselect | numlist bullist checklist',
             'forecolor backcolor casechange permanentpen formatpainter removeformat',
-            'pagebreak',
             'charmap emoticons',
-            'fullscreen save print',
-            'insertfile image media pageembed template link anchor codesample',
-            'a11ycheck ltr rtl',
-            'showcomments addcomment searchreplace',
+            'insertfile image media pageembed template link anchor showcomments addcomment searchreplace',
           ].join(' | ' ),
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
@@ -116,7 +110,7 @@ EditorHtml.propTypes = {
 };
 EditorHtml.defaultProps = {
   height: 120,
-  width: 400,
+  width: 450,
   onDone: () => {}
 };
 
