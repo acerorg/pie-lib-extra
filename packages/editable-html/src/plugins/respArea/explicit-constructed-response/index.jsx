@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ExplicitConstructedResponse = props => {
-  const { attributes, value } = props;
-
+  const { attributes, value, index } = props;
   return (
     <span
       {...attributes}
@@ -16,18 +15,34 @@ const ExplicitConstructedResponse = props => {
         cursor: 'pointer'
       }}
     >
+        <span style={{
+            width: '30px',
+            height: '30px',
+            background: '#DDDDDD',
+            borderRadius: '50%',
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontWeight: '700',
+            fontSize: '12',
+            font: 'Roboto'
+
+        }}
+        >{Number(index)+Number(1)}</span>
       <div
         style={{
           display: 'inline-flex',
-          minWidth: '178px',
-          minHeight: '36px',
-          height: '36px',
+          minWidth: '150px',
+          minHeight: '30px',
+          height: '30px',
           background: '#FFF',
           border: '1px solid #C0C3CF',
           boxSizing: 'border-box',
-          borderRadius: '3px',
+          borderRadius: '15px',
           overflow: 'hidden',
-          padding: '8px'
+          padding: '5px',
+          paddingLeft: '30px'
         }}
         dangerouslySetInnerHTML={{
           __html: value || '<div>&nbsp;</div>'
@@ -39,7 +54,7 @@ const ExplicitConstructedResponse = props => {
 
 ExplicitConstructedResponse.propTypes = {
   attributes: PropTypes.object,
-  value: PropTypes.object
+  value: PropTypes.string
 };
 
 export default ExplicitConstructedResponse;

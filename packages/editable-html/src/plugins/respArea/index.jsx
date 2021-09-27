@@ -32,6 +32,7 @@ export default function ResponseAreaPlugin(opts) {
       if (newInline) {
         if (change.value.selection.startKey || change.value.selection.endKey) {
           change.insertInline(newInline);
+          change.index = newIndex;
         } else {
           // If the markup is empty and there's no focus
           const lastText = value.document.getLastText();
@@ -81,11 +82,10 @@ export default function ResponseAreaPlugin(opts) {
     },
     renderNode(props) {
       const { attributes, node: n } = props;
-
       if (n.type === 'explicit_constructed_response') {
         const data = n.data.toJSON();
 
-        return <ExplicitConstructedResponse attributes={attributes} value={data.value} />;
+        return <ExplicitConstructedResponse attributes={attributes} value={data.value} index={data.index} />;
       }
 
       if (n.type === 'drag_in_the_blank') {
