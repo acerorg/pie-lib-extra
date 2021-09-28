@@ -3061,10 +3061,9 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@tinymce/tinymce-react@^3.12.6":
-  version "3.12.6"
-  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-3.12.6.tgz#8a4e2a5c5026b7a0c9c4c839af4d691804aa0604"
-  integrity sha512-a7/Ns7uVsSr2N0fCxn+OhDx8f9JqfywTlHbXsgcwlWB6vIBMIjjRBJ6PGo/5H0y2vfzO6fBzd4gc6h05Cm5R7A==
+"@tinymce/tinymce-react@git+ssh://git@github.com:TeachForward/tinymce-react.git#main":
+  version "3.12.7-rc"
+  resolved "git+ssh://git@github.com:TeachForward/tinymce-react.git#76d6bc8b3ee4c9f43ea410ea0f3871a1d620417f"
   dependencies:
     prop-types "^15.6.2"
     tinymce "^5.5.1"
