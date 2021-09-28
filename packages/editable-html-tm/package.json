@@ -1,6 +1,6 @@
 {
   "name": "@teachforward/editable-html-tm",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -18,7 +18,7 @@
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.10",
-    "@tinymce/tinymce-react": "^3.12.6",
+    "@tinymce/tinymce-react": "git+ssh://git@github.com:TeachForward/tinymce-react.git#main",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "immutable": "^4.0.0-rc.12",
