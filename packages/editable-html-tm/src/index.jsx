@@ -30,7 +30,15 @@ const useStyles = withStyles(theme => ({
   }
 }));
 
-function EditorHtml({ classes, className, markup, onChange, onDone, height, width }) {
+function dataImageHandler(blobInfo, success, failure, progress) {
+  progress(50);
+  setTimeout(() => {
+    progress(100);
+    success(`data:${blobInfo.blob().type};base64,${blobInfo.base64()}`);
+  }, 500);
+}
+
+function EditorHtml({ classes, markup, onChange, onDone, height, width }) {
 
   const editorRef = useRef(null);
 
@@ -86,12 +94,17 @@ function EditorHtml({ classes, className, markup, onChange, onDone, height, widt
           ],
           toolbar_mode: 'sliding',
           toolbar: [
-            'bold italic underline | alignleft aligncenter alignright alignjustify outdent indent | table | code',
-            'formatselect | numlist bullist checklist',
+            'bold italic underline strikethrough alignleft aligncenter alignright alignjustify table code | fullscreen',
+            'formatselect link anchor',
+            'outdent indent numlist bullist checklist',
             'forecolor backcolor casechange permanentpen formatpainter removeformat',
+            'pagebreak',
             'charmap emoticons',
-            'insertfile image media pageembed template link anchor showcomments addcomment searchreplace',
+            'save print insertfile image media pageembed template',
+            'a11ycheck ltr rtl',
+            'showcomments addcomment searchreplace',
           ].join(' | ' ),
+          images_upload_handler: dataImageHandler,
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />

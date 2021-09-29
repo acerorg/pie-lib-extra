@@ -23,6 +23,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: webfactory/ssh-agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
