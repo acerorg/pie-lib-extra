@@ -123,7 +123,8 @@ export class ChoiceConfiguration extends React.Component {
     allowDelete: PropTypes.bool,
     allowReorder: PropTypes.bool,
     inputToggleDisabled: PropTypes.bool,
-    toolbarOpts: PropTypes.object
+    toolbarOpts: PropTypes.object,
+    dragHandleProps: PropTypes.object
   };
 
   static defaultProps = {
@@ -194,7 +195,8 @@ export class ChoiceConfiguration extends React.Component {
       allowReorder,
       allowDelete,
       toolbarOpts,
-      inputToggleDisabled
+      inputToggleDisabled,
+      dragHandleProps
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -248,8 +250,8 @@ export class ChoiceConfiguration extends React.Component {
             </InputContainer>
           )}
           {allowReorder && (
-            <InputContainer className={classes.iconContainer} label={!noLabels ? 'Reorder' : ''}>
-              <IconButton aria-label="reorder" className={classes.styledIcon}>
+            <InputContainer className={classes.iconContainer} label={!noLabels ? 'Reorder' : ''} >
+              <IconButton aria-label="reorder" className={classes.styledIcon} {...dragHandleProps}>
                 <DragIndicatorIcon />
               </IconButton>
             </InputContainer>
