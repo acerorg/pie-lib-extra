@@ -38,7 +38,7 @@ function dataImageHandler(blobInfo, success, failure, progress) {
   }, 500);
 }
 
-function EditorHtml({ classes, markup, onChange, onDone, height, width }) {
+function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus }) {
 
   const editorRef = useRef(null);
 
@@ -46,8 +46,9 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width }) {
     const htmlParsed = parseDegrees(value);
 
     if (value !== markup) {
-      onChange(htmlParsed);
+      onChange && onChange(htmlParsed);
     }
+
 
     if (done && typeof onDone === 'function') {
       onDone(htmlParsed);
@@ -61,6 +62,9 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width }) {
         apiKey="jia0ekj0smryac6bkoratszcr5zks933f60faprd3b30work"
         onInit={(evt, editor) => (editorRef.current = editor)}
         value={markup}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        outputFormat={outputFormat}
         onEditorChange={inputChange}
         scriptLoading={{ async: true }}
         init={{

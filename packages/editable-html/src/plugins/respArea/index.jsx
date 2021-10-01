@@ -1,6 +1,5 @@
 import React from 'react';
 import debug from 'debug';
-import isUndefined from 'lodash/isUndefined';
 
 import InlineDropdown from './inline-dropdown';
 import DragInTheBlank from './drag-in-the-blank';
@@ -104,20 +103,18 @@ export default function ResponseAreaPlugin(opts) {
     },
     onChange(change) {
       const type = opts.type.replace(/-/g, '_');
+      let maxIndex = 0;
+      change.value.document.forEachDescendant(d => {
+        if (d.type === type) {
+          const newIndex = parseInt(d.data.get('index'), 10);
 
-      if (isUndefined(lastIndexMap[type])) {
-        lastIndexMap[type] = 0;
-
-        change.value.document.forEachDescendant(d => {
-          if (d.type === type) {
-            const newIndex = parseInt(d.data.get('index'), 10);
-
-            if (newIndex > lastIndexMap[type]) {
-              lastIndexMap[type] = newIndex;
-            }
+          if (newIndex > maxIndex) {
+            maxIndex = newIndex;
           }
-        });
-      }
+        }
+      });
+
+      lastIndexMap[type] = maxIndex;
     },
     normalizeNode: node => {
       if (node.object !== 'document') {
