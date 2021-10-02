@@ -22,11 +22,10 @@ export default function ResponseAreaPlugin(opts) {
       log('[toolbar] onClick');
       const change = value.change();
       const type = opts.type.replace(/-/g, '_');
-      const prevIndex = lastIndexMap[type];
-      const newIndex = prevIndex === 0 ? prevIndex : prevIndex + 1;
+      const prevIndex = lastIndexMap[type] === undefined ? -1 : lastIndexMap[type];
+      const newIndex = prevIndex + 1;
       const newInline = getDefaultElement(opts, newIndex);
-
-      lastIndexMap[type] += 1;
+      lastIndexMap[type] = newIndex;
 
       if (newInline) {
         if (change.value.selection.startKey || change.value.selection.endKey) {
@@ -103,7 +102,7 @@ export default function ResponseAreaPlugin(opts) {
     },
     onChange(change) {
       const type = opts.type.replace(/-/g, '_');
-      let maxIndex = 0;
+      let maxIndex = -1;
       change.value.document.forEachDescendant(d => {
         if (d.type === type) {
           const newIndex = parseInt(d.data.get('index'), 10);
