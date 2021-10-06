@@ -75,6 +75,10 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
           paste_data_images: true,
           object_resizing: true,
           automatic_uploads: false,
+          external_plugins: {
+            // this needs to be setup in the parent project
+            tiny_mce_wiris: '/@wiris/mathtype-tinymce5/plugin.min.js'
+          },
           plugins: [
             'advlist',
             'anchor',
@@ -106,8 +110,11 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
             'charmap emoticons',
             'save print insertfile image media pageembed template',
             'a11ycheck ltr rtl',
-            'showcomments addcomment searchreplace',
-          ].join(' | ' ),
+            'showcomments addcomment searchreplace tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
+          ].join(' | '),
+          htmlAllowedTags: ['.*'],
+          htmlAllowedAttrs: ['.*'],
+          draggable_modal: true,
           images_upload_handler: dataImageHandler,
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
