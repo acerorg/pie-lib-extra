@@ -97,7 +97,7 @@ export default function ResponseAreaPlugin(opts) {
       if (n.type === 'inline_dropdown') {
         const data = n.data.toJSON();
 
-        return <InlineDropdown attributes={attributes} selectedItem={data.value} />;
+        return <InlineDropdown attributes={attributes} selectedItem={data.value} index={data.index} />;
       }
     },
     onChange(change) {
