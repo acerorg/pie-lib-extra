@@ -38,7 +38,7 @@ function dataImageHandler(blobInfo, success, failure, progress) {
   }, 500);
 }
 
-function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus, fixedToolbarContainer }) {
+function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus, fixedToolbarContainer, tinyMCEApiKey }) {
 
   const editorRef = useRef(null);
 
@@ -59,7 +59,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
     <div className={classes.editorWrapper}>
       <Editor
         className={classes.editContainer}
-        apiKey="jia0ekj0smryac6bkoratszcr5zks933f60faprd3b30work"
+        apiKey={tinyMCEApiKey || ''}
         onInit={(evt, editor) => (editorRef.current = editor)}
         value={markup}
         onBlur={onBlur}
