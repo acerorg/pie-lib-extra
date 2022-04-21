@@ -38,7 +38,7 @@ function dataImageHandler(blobInfo, success, failure, progress) {
   }, 500);
 }
 
-function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus }) {
+function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus, fixedToolbarContainer }) {
 
   const editorRef = useRef(null);
 
@@ -75,6 +75,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
           paste_data_images: true,
           object_resizing: true,
           automatic_uploads: false,
+          fixed_toolbar_container: fixedToolbarContainer,
           external_plugins: {
             // this needs to be setup in the parent project
             tiny_mce_wiris: '/@wiris/mathtype-tinymce5/plugin.min.js'
