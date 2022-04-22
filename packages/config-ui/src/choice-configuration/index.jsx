@@ -28,7 +28,10 @@ const EditableHtmlContainer = withStyles(theme => ({
     imageSupport,
     disabled,
     nonEmpty,
-    toolbarOpts
+    toolbarOpts,
+    fixedToolbarContainer = '',
+    onBlur = () => {},
+    tinyMCEApiKey = '',
   }) => {
     const names = classNames(classes.labelContainer, className);
 
@@ -43,6 +46,9 @@ const EditableHtmlContainer = withStyles(theme => ({
             imageSupport={imageSupport}
             className={classes.editor}
             toolbarOpts={toolbarOpts}
+            fixedToolbarContainer='#jg-foobar-toolbar-x'
+            onBlur={onBlur}
+            tinyMCEApiKey={tinyMCEApiKey}
           />
         </div>
       </InputContainer>
@@ -63,7 +69,7 @@ const Feedback = withStyles(() => ({
     position: 'absolute',
     top: 20
   }
-}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts }) => {
+}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts, fixedToolbarContainer = '', onBlur = () => {}, tinyMCEApiKey = '', }) => {
   if (!type || type === 'none') {
     return null;
   } else if (type === 'default') {
@@ -87,6 +93,9 @@ const Feedback = withStyles(() => ({
           value={value}
           onChange={onChange}
           toolbarOpts={toolbarOpts}
+          fixedToolbarContainer={fixedToolbarContainer}
+          onBlur={onBlur}
+          tinyMCEApiKey={tinyMCEApiKey}
         />
       </div>
     );
@@ -196,7 +205,10 @@ export class ChoiceConfiguration extends React.Component {
       allowDelete,
       toolbarOpts,
       inputToggleDisabled,
-      dragHandleProps
+      dragHandleProps,
+      fixedToolbarContainer = '',
+      onBlur = () => { },
+      tinyMCEApiKey = '',
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -224,6 +236,9 @@ export class ChoiceConfiguration extends React.Component {
               onChange={this.onLabelChange}
               imageSupport={imageSupport}
               disabled={disabled}
+              fixedToolbarContainer={fixedToolbarContainer}
+              onBlur={onBlur}
+              tinyMCEApiKey={tinyMCEApiKey}
               nonEmpty={nonEmpty}
               toolbarOpts={toolbarOpts}
             />
