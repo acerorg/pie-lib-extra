@@ -46,7 +46,7 @@ const EditableHtmlContainer = withStyles(theme => ({
             imageSupport={imageSupport}
             className={classes.editor}
             toolbarOpts={toolbarOpts}
-            fixedToolbarContainer='#jg-foobar-toolbar-x'
+            fixedToolbarContainer={fixedToolbarContainer}
             onBlur={onBlur}
             tinyMCEApiKey={tinyMCEApiKey}
           />
