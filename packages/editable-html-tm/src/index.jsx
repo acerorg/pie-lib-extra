@@ -38,7 +38,7 @@ function dataImageHandler(blobInfo, success, failure, progress) {
   }, 500);
 }
 
-function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus }) {
+function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus, fixedToolbarContainer, tinyMCEApiKey }) {
 
   const editorRef = useRef(null);
 
@@ -59,7 +59,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
     <div className={classes.editorWrapper}>
       <Editor
         className={classes.editContainer}
-        apiKey="jia0ekj0smryac6bkoratszcr5zks933f60faprd3b30work"
+        apiKey={tinyMCEApiKey || ''}
         onInit={(evt, editor) => (editorRef.current = editor)}
         value={markup}
         onBlur={onBlur}
@@ -75,46 +75,95 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
           paste_data_images: true,
           object_resizing: true,
           automatic_uploads: false,
+          fixed_toolbar_container: fixedToolbarContainer,
           external_plugins: {
             // this needs to be setup in the parent project
             tiny_mce_wiris: '/@wiris/mathtype-tinymce5/plugin.min.js'
           },
           plugins: [
-            'advlist',
-            'anchor',
-            'autolink',
-            'charmap',
-            'code',
-            'fullscreen',
-            'help',
-            'image imagetools',
-            'insertdatetime',
-            'link',
-            'lists',
-            'media',
-            'paste',
-            'preview',
-            'print',
-            'searchreplace',
-            'table',
-            'visualblocks',
-            'wordcount'
+            'preview ' +
+            'paste ' +
+            'importcss ' +
+            'searchreplace ' +
+            'autolink ' +
+            'autosave ' +
+            'directionality ' +
+            'code ' +
+            'visualblocks ' +
+            'visualchars ' +
+            'fullscreen ' +
+            'image ' +
+            'link ' +
+            'media ' +
+            'template ' +
+            'codesample ' +
+            'table ' +
+            'charmap ' +
+            'hr ' +
+            'nonbreaking ' +
+            'anchor ' +
+            'toc ' +
+            'insertdatetime ' +
+            'advlist ' +
+            'lists ' +
+            'wordcount ' +
+            'imagetools ' +
+            'textpattern ' +
+            'noneditable ' +
+            'help ' +
+            'charmap ' +
+            'contextmenu ' +
+            'emoticons',
           ],
           toolbar_mode: 'sliding',
           toolbar: [
-            'bold italic underline strikethrough alignleft aligncenter alignright alignjustify table code | fullscreen',
-            'formatselect link anchor',
-            'outdent indent numlist bullist checklist',
-            'forecolor backcolor casechange permanentpen formatpainter removeformat',
-            'pagebreak',
-            'charmap emoticons',
-            'save print insertfile image media pageembed template',
-            'a11ycheck ltr rtl',
-            'showcomments addcomment searchreplace tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
-          ].join(' | '),
+            'undo',
+            'redo |',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough |',
+            'fontselect',
+            'fontsizeselect',
+            'formatselect |',
+            'alignleft',
+            'aligncenter',
+            'alignright',
+            'alignjustify |',
+            'outdent',
+            'indent |',
+            'numlist',
+            'bullist |',
+            'forecolor',
+            'backcolor',
+            'removeformat |',
+            'charmap',
+            'emoticons |',
+            'fullscreen',
+            'preview',
+            'insertfile |',
+            'table',
+            'tabledelete',
+            'tableprops',
+            'tablerowprops',
+            'tablecellprops |',
+            'tableinsertrowbefore',
+            'tableinsertrowafter',
+            'tabledeleterow |',
+            'tableinsertcolbefore',
+            'tableinsertcolafter',
+            'tabledeletecol |',
+            'image',
+            'link',
+            'anchor',
+            'codesample',
+          ].join(' '),
           htmlAllowedTags: ['.*'],
           htmlAllowedAttrs: ['.*'],
           draggable_modal: true,
+          setup: (editor) => {
+            editor.on('blur', () => typeof onBlur === 'function' ? onBlur() : onBlur);
+          },
           images_upload_handler: dataImageHandler,
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
