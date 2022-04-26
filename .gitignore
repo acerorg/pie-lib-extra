@@ -9,4 +9,4 @@ package-lock.json
 NEXT.CHANGELOG.md
 *.CHANGELOG.json
 PIE-*
-
+.log
