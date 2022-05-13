@@ -16,7 +16,7 @@ import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
 const EditableHtmlContainer = withStyles(theme => ({
   labelContainer: {},
   editorHolder: {
-    marginTop: theme.spacing.unit * 1.5
+    // marginTop: theme.spacing.unit * 1.5
   }
 }))(
   ({
@@ -31,7 +31,7 @@ const EditableHtmlContainer = withStyles(theme => ({
     toolbarOpts,
     fixedToolbarContainer = '',
     onBlur = () => {},
-    tinyMCEApiKey = '',
+    tinyMCEApiKey = ''
   }) => {
     const names = classNames(classes.labelContainer, className);
 
@@ -69,38 +69,51 @@ const Feedback = withStyles(() => ({
     position: 'absolute',
     top: 20
   }
-}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts, fixedToolbarContainer = '', onBlur = () => {}, tinyMCEApiKey = '', }) => {
-  if (!type || type === 'none') {
-    return null;
-  } else if (type === 'default') {
-    return (
-      <div className={classes.feedbackContainer}>
-        <ArrowRight className={classes.arrowIcon} />
-        <TextField
-          className={classes.text}
-          label="Feedback Text"
-          value={correct ? defaults.correct : defaults.incorrect}
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div className={classes.feedbackContainer}>
-        <ArrowRight className={classes.arrowIcon} />
-        <EditableHtmlContainer
-          className={classes.text}
-          label="Feedback Text"
-          value={value}
-          onChange={onChange}
-          toolbarOpts={toolbarOpts}
-          fixedToolbarContainer={fixedToolbarContainer}
-          onBlur={onBlur}
-          tinyMCEApiKey={tinyMCEApiKey}
-        />
-      </div>
-    );
+}))(
+  ({
+    value,
+    onChange,
+    type,
+    correct,
+    classes,
+    defaults,
+    toolbarOpts,
+    fixedToolbarContainer = '',
+    onBlur = () => {},
+    tinyMCEApiKey = ''
+  }) => {
+    if (!type || type === 'none') {
+      return null;
+    } else if (type === 'default') {
+      return (
+        <div className={classes.feedbackContainer}>
+          <ArrowRight className={classes.arrowIcon} />
+          <TextField
+            className={classes.text}
+            label="Feedback Text"
+            value={correct ? defaults.correct : defaults.incorrect}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className={classes.feedbackContainer}>
+          <ArrowRight className={classes.arrowIcon} />
+          <EditableHtmlContainer
+            className={classes.text}
+            label="Feedback Text"
+            value={value}
+            onChange={onChange}
+            toolbarOpts={toolbarOpts}
+            fixedToolbarContainer={fixedToolbarContainer}
+            onBlur={onBlur}
+            tinyMCEApiKey={tinyMCEApiKey}
+          />
+        </div>
+      );
+    }
   }
-});
+);
 
 export class ChoiceConfiguration extends React.Component {
   static propTypes = {
@@ -122,6 +135,7 @@ export class ChoiceConfiguration extends React.Component {
       })
     }),
     onDelete: PropTypes.func,
+    onRationaleChanged: PropTypes.func,
     onChange: PropTypes.func,
     index: PropTypes.number,
     imageSupport: PropTypes.shape({
@@ -133,7 +147,9 @@ export class ChoiceConfiguration extends React.Component {
     allowReorder: PropTypes.bool,
     inputToggleDisabled: PropTypes.bool,
     toolbarOpts: PropTypes.object,
-    dragHandleProps: PropTypes.object
+    dragHandleProps: PropTypes.object,
+    rationaleEnabled: PropTypes.bool,
+    rationale: PropTypes.object
   };
 
   static defaultProps = {
@@ -192,7 +208,7 @@ export class ChoiceConfiguration extends React.Component {
       classes,
       mode,
       onDelete,
-      defaultFeedback,
+      onRationaleChanged,
       index,
       className,
       noLabels,
@@ -200,21 +216,21 @@ export class ChoiceConfiguration extends React.Component {
       imageSupport,
       disabled,
       nonEmpty,
-      allowFeedBack,
       allowReorder,
       allowDelete,
       toolbarOpts,
       inputToggleDisabled,
       dragHandleProps,
       fixedToolbarContainer = '',
-      onBlur = () => { },
+      onBlur = () => {},
       tinyMCEApiKey = '',
+      rationaleEnabled,
+      rationale
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
-    const names = classNames(classes.choiceConfiguration, className);
     return (
-      <div className={names}>
+      <div className={classes.choiceConfigurationContainer}>
         <div className={classes.topRow}>
           {index > 0 && (
             <span className={classes.index} type="title">
@@ -242,30 +258,28 @@ export class ChoiceConfiguration extends React.Component {
               nonEmpty={nonEmpty}
               toolbarOpts={toolbarOpts}
             />
-
-            {allowFeedBack && (
-              <Feedback
-                {...data.feedback}
-                correct={data.correct}
-                defaults={defaultFeedback}
-                onChange={this.onFeedbackValueChange}
-                toolbarOpts={toolbarOpts}
-              />
-            )}
           </div>
-          {allowFeedBack && (
-            <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>
-              <FeedbackMenu
-                onChange={this.onFeedbackTypeChange}
-                value={data.feedback}
-                classes={{
-                  icon: classes.feedbackIcon
-                }}
-              />
-            </InputContainer>
-          )}
+        </div>
+        {rationaleEnabled && (
+          <InputContainer
+            key={`rationale-${index}`}
+            label={rationale.label}
+            className={classes.rationaleHolder}
+          >
+            <EditableHtml
+              className={classes.rationale}
+              markup={data.rationale || ''}
+              fixedToolbarContainer={fixedToolbarContainer}
+              onBlur={onBlur}
+              tinyMCEApiKey={tinyMCEApiKey}
+              onChange={onRationaleChanged}
+              imageSupport={imageSupport}
+            />
+          </InputContainer>
+        )}
+        <div className={classes.choiceActionsContainer}>
           {allowReorder && (
-            <InputContainer className={classes.iconContainer} label={!noLabels ? 'Reorder' : ''} >
+            <InputContainer className={classes.iconContainer} label={!noLabels ? 'Reorder' : ''}>
               <IconButton aria-label="reorder" className={classes.styledIcon} {...dragHandleProps}>
                 <DragIndicatorIcon />
               </IconButton>
@@ -286,7 +300,7 @@ export class ChoiceConfiguration extends React.Component {
 
 const styles = theme => ({
   index: {
-    padding: '10px 16px 0 0',
+    padding: '12px 16px 0 0',
     fontSize: 16,
     fontWeight: 400,
     color: 'rgba(0, 0, 0, 0.87)'
@@ -294,7 +308,10 @@ const styles = theme => ({
   choiceConfiguration: {},
   topRow: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: 'calc(100% - 110px)',
+    paddingLeft: '10px',
+    paddingBottom: '13px'
   },
   value: {
     flex: '0.5',
@@ -329,6 +346,25 @@ const styles = theme => ({
     display: 'flex',
     flex: 1,
     flexDirection: 'column'
+  },
+  rationaleHolder: {
+    width: '67%',
+    margin: '0 3%'
+  },
+  choiceActionsContainer: {
+    background: '#FAFAFA',
+    borderLeft: '1px solid rgba(0, 0, 0, 0.23)',
+    borderRadius: '0px 4px 4px 0px',
+    position: 'absolute',
+    height: '100%',
+    top: '0',
+    right: '0',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  choiceConfigurationContainer: {
+    width: '100%',
+    position: 'relative'
   }
 });
 

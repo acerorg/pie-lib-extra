@@ -16,7 +16,6 @@ const useStyles = withStyles(theme => ({
   editorWrapper: {
     marginTop: theme.spacing.unit * 2 + 5,
     marginLeft: '0px',
-    marginRight: '5px',
     border: '1px solid #e0e0e0',
     borderRadius: '5px',
     padding: '0px',
