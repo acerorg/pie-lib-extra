@@ -348,8 +348,8 @@ const styles = theme => ({
     flexDirection: 'column'
   },
   rationaleHolder: {
-    width: '70%',
-    margin: '0 4%'
+    width: '67%',
+    margin: '0 3%'
   },
   choiceActionsContainer: {
     background: '#FAFAFA',
