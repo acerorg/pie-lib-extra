@@ -1,6 +1,6 @@
 {
   "name": "@teachforward/config-ui",
-  "version": "10.10.13",
+  "version": "10.10.14",
   "main": "lib/index.js",
   "module": "src/index.js",
   "repository": {
@@ -15,7 +15,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@teachforward/editable-html-tm": "^1.0.9",
+    "@teachforward/editable-html-tm": "^1.0.10",
     "@pie-lib/icons": "^2.4.25",
     "@pie-lib/render-ui": "^4.11.9",
     "react-beautiful-dnd": "^13.1.0",
