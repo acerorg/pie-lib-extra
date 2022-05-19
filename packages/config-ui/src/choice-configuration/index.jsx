@@ -349,7 +349,8 @@ const styles = theme => ({
   },
   rationaleHolder: {
     width: '67%',
-    margin: '0 3%'
+    margin: '0 3%',
+    flex: 'none'
   },
   choiceActionsContainer: {
     background: '#FAFAFA',
@@ -366,7 +367,9 @@ const styles = theme => ({
     width: '100%',
     position: 'relative',
     height: '100%',
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
   }
 });
 
