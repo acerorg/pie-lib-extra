@@ -364,7 +364,9 @@ const styles = theme => ({
   },
   choiceConfigurationContainer: {
     width: '100%',
-    position: 'relative'
+    position: 'relative',
+    height: '100%',
+    display: 'flex'
   }
 });
 
