@@ -31,7 +31,8 @@ const EditableHtmlContainer = withStyles(theme => ({
     toolbarOpts,
     fixedToolbarContainer = '',
     onBlur = () => {},
-    tinyMCEApiKey = ''
+    tinyMCEApiKey = '',
+    browserSpellCheck
   }) => {
     const names = classNames(classes.labelContainer, className);
 
@@ -49,6 +50,7 @@ const EditableHtmlContainer = withStyles(theme => ({
             fixedToolbarContainer={fixedToolbarContainer}
             onBlur={onBlur}
             tinyMCEApiKey={tinyMCEApiKey}
+            browserSpellCheck={browserSpellCheck}
           />
         </div>
       </InputContainer>
@@ -80,7 +82,8 @@ const Feedback = withStyles(() => ({
     toolbarOpts,
     fixedToolbarContainer = '',
     onBlur = () => {},
-    tinyMCEApiKey = ''
+    tinyMCEApiKey = '',
+    browserSpellCheck
   }) => {
     if (!type || type === 'none') {
       return null;
@@ -108,6 +111,7 @@ const Feedback = withStyles(() => ({
             fixedToolbarContainer={fixedToolbarContainer}
             onBlur={onBlur}
             tinyMCEApiKey={tinyMCEApiKey}
+            browserSpellCheck={browserSpellCheck}
           />
         </div>
       );
@@ -225,7 +229,8 @@ export class ChoiceConfiguration extends React.Component {
       onBlur = () => {},
       tinyMCEApiKey = '',
       rationaleEnabled,
-      rationale
+      rationale,
+      browserSpellCheck
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -257,6 +262,7 @@ export class ChoiceConfiguration extends React.Component {
               tinyMCEApiKey={tinyMCEApiKey}
               nonEmpty={nonEmpty}
               toolbarOpts={toolbarOpts}
+              browserSpellCheck={browserSpellCheck}
             />
           </div>
         </div>
@@ -274,6 +280,7 @@ export class ChoiceConfiguration extends React.Component {
               tinyMCEApiKey={tinyMCEApiKey}
               onChange={onRationaleChanged}
               imageSupport={imageSupport}
+              browserSpellCheck={browserSpellCheck}
             />
           </InputContainer>
         )}

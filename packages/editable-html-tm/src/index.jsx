@@ -37,7 +37,7 @@ function dataImageHandler(blobInfo, success, failure, progress) {
   }, 500);
 }
 
-function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus, fixedToolbarContainer, tinyMCEApiKey }) {
+function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFormat, onBlur, onFocus, fixedToolbarContainer, tinyMCEApiKey, browserSpellCheck }) {
 
   const editorRef = useRef(null);
 
@@ -75,6 +75,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
           object_resizing: true,
           automatic_uploads: false,
           fixed_toolbar_container: fixedToolbarContainer,
+          browser_spellcheck: browserSpellCheck,
           external_plugins: {
             // this needs to be setup in the parent project
             tiny_mce_wiris: '/@wiris/mathtype-tinymce5/plugin.min.js'
