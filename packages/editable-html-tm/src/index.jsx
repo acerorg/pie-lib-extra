@@ -161,6 +161,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
           htmlAllowedTags: ['.*'],
           htmlAllowedAttrs: ['.*'],
           draggable_modal: true,
+          contextmenu: false,
           setup: (editor) => {
             editor.on('blur', () => typeof onBlur === 'function' ? onBlur() : onBlur);
           },
