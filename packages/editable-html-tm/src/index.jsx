@@ -122,6 +122,8 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
             'bold',
             'italic',
             'underline',
+            'subscript',
+            'superscript',
             'strikethrough |',
             'fontselect',
             'fontsizeselect',
