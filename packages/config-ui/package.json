@@ -1,6 +1,6 @@
 {
   "name": "@teachforward/config-ui",
-  "version": "10.10.18",
+  "version": "10.10.19",
   "main": "lib/index.js",
   "module": "src/index.js",
   "repository": {

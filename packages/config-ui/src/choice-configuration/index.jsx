@@ -352,7 +352,8 @@ const styles = theme => ({
   middleColumn: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: 'calc(100% - 110px)'
   },
   rationaleHolder: {
     width: '67%',
