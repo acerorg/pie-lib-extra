@@ -22,7 +22,7 @@ const useStyles = withStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     '& .mce-content-body': {
-      padding: '5px',
+      padding: '10px 5px 0 5px',
       clear: 'both',
       float: 'none'
     }
