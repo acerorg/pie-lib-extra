@@ -164,6 +164,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
             'tabledeletecol |',
             'image',
             'link',
+            'unlink',
             'anchor',
             'codesample',
             'tiny_mce_wiris_formulaEditor',
