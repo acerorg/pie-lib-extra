@@ -3606,20 +3606,20 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@wiris/mathtype-html-integration-devkit@1.6.1":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@wiris/mathtype-html-integration-devkit/-/mathtype-html-integration-devkit-1.6.1.tgz#e03cd680b71e3399a7e0d817f95c0053d09b5e62"
-  integrity sha512-4LWvlQHq4fXZh8S4ddyfS7JrR4D9ogfPBpQGONXUZLlPZ10ud3i1VrVKrkhoKQjnGNRwtVhnxilN7bahSeRVGA==
+"@wiris/mathtype-html-integration-devkit@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@wiris/mathtype-html-integration-devkit/-/mathtype-html-integration-devkit-1.8.0.tgz#d80881eb720ae74993e389b007b3d514684dd4ae"
+  integrity sha512-9mnPIKE2zXNlHG93QPbRS5KPr98uY+9kqG/ISmQBQy41VnU/MrDuO2h/ZltgA5mxM4Y3h2YA/RJoQ/t3jQ1b4A==
   dependencies:
     raw-loader "^4.0.2"
     uuid "^8.3.2"
 
-"@wiris/mathtype-tinymce5@^7.27.1":
-  version "7.27.1"
-  resolved "https://registry.yarnpkg.com/@wiris/mathtype-tinymce5/-/mathtype-tinymce5-7.27.1.tgz#0f5ec4b88b95a1d8a9ac3c19f55c8d90a64bbfbe"
-  integrity sha512-oBAmpA1Mhev6vOjkKXWa5w+zsYjma9Wp6spoL+USU5T1Ybtg56MIbXjs/3fJ1d/ixZGQMkNKe+UtOTHZ8YYH8w==
+"@wiris/mathtype-tinymce5@^7.29.0":
+  version "7.29.0"
+  resolved "https://registry.yarnpkg.com/@wiris/mathtype-tinymce5/-/mathtype-tinymce5-7.29.0.tgz#61f06796e42f474191a28c00c1d3e87c31c9885c"
+  integrity sha512-UaIo2PLh7/I0ZbN0LaVW+impoLjE4Dcmk9CXFUhVjNtN5ygBfKgjtfVDIy1/HoM2e/ROWyqARTelupoDlpvPOw==
   dependencies:
-    "@wiris/mathtype-html-integration-devkit" "1.6.1"
+    "@wiris/mathtype-html-integration-devkit" "1.8.0"
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
