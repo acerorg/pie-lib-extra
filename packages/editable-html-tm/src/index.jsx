@@ -163,6 +163,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
             'tabledeletecol |',
             'image',
             'link',
+            'unlink',
             'anchor',
             'codesample',
           ].join(' '),
