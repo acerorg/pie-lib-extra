@@ -78,7 +78,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
           browser_spellcheck: browserSpellCheck,
           external_plugins: {
             // this needs to be setup in the parent project
-            //tiny_mce_wiris: '/@wiris/mathtype-tinymce5/plugin.min.js'
+            tiny_mce_wiris: '/@wiris/mathtype-tinymce5/plugin.min.js'
 
             // JG - turning off wiris plugin for now... seems to be
             // causing issues with (at least) match type when loading
@@ -119,8 +119,8 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
             'noneditable ' +
             'help ' +
             'charmap ' +
-            'emoticons',
-           // 'tiny_mce_wiris'
+            'emoticons', +
+            'tiny_mce_wiris'
           ],
           toolbar_mode: 'sliding',
           toolbar: [
@@ -167,8 +167,8 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
             'unlink',
             'anchor',
             'codesample',
-          //  'tiny_mce_wiris_formulaEditor',
-          //  'tiny_mce_wiris_formulaEditorChemistry'
+            'tiny_mce_wiris_formulaEditor',
+            'tiny_mce_wiris_formulaEditorChemistry'
           ].join(' '),
           htmlAllowedTags: ['.*'],
           htmlAllowedAttrs: ['.*'],
