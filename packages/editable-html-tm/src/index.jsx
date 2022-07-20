@@ -77,17 +77,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
           fixed_toolbar_container: fixedToolbarContainer,
           browser_spellcheck: browserSpellCheck,
           external_plugins: {
-            // this needs to be setup in the parent project
             tiny_mce_wiris: '/@wiris/mathtype-tinymce5/plugin.min.js'
-
-            // JG - turning off wiris plugin for now... seems to be
-            // causing issues with (at least) match type when loading
-            // the pie element multiple times. The effect is that it's
-            // setting the first row's title to the default value
-            // immediately after setting the value to what it should
-            // be in the model. (See:
-            // https://educopiallc.atlassian.net/browse/BLUE-1175 and
-            // https://educopiallc.atlassian.net/browse/BLUE-344)
           },
           plugins: [
             'preview ' +
