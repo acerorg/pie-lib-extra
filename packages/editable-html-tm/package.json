@@ -1,6 +1,6 @@
 {
   "name": "@teachforward/editable-html-tm",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
