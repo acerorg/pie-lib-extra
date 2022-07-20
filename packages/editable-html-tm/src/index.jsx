@@ -109,7 +109,7 @@ function EditorHtml({ classes, markup, onChange, onDone, height, width, outputFo
             'noneditable ' +
             'help ' +
             'charmap ' +
-            'emoticons' +
+            'emoticons ' +
             'tiny_mce_wiris'
           ],
           toolbar_mode: 'sliding',
