@@ -7,7 +7,6 @@ import { InputContainer } from '@pie-lib/render-ui';
 import EditableHtml from '@teachforward/editable-html-tm';
 
 import { InputCheckbox, InputRadio } from '../inputs';
-import FeedbackMenu from './feedback-menu';
 import ActionDelete from '@material-ui/icons/Delete';
 import ArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 import IconButton from '@material-ui/core/IconButton';
@@ -310,7 +309,8 @@ const styles = theme => ({
     padding: '12px 16px 0 0',
     fontSize: 16,
     fontWeight: 400,
-    color: 'rgba(0, 0, 0, 0.87)'
+    color: 'rgba(0, 0, 0, 0.87)',
+    cursor: 'default'
   },
   choiceConfiguration: {},
   topRow: {
